@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+	@import url('https://fonts.cdnfonts.com/css/roslindale');
+	@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');}
+    @font-face {
+    font-family: 'Pretendard-Medium';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-weight: 400;
+    font-style: normal;}
+
+	body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(132,132,132,1) 8%, rgba(236,224,172,1) 22%, rgba(213,213,213,1) 35%);
+            overflow: hidden;
+            text-align: center; 
+        }
+	#butt{position: absolute; top: 33vh; left: 50%;
+    transform: translateX(-50%); z-index: 3;}	
+    .title{padding-top: 60px;  font-family: 'Roslindale', serif; font-style: normal; font-weight: 300; font-weight: 600; line-height: 0.85; color: #FFE98A; font-size: 40px; text-shadow: 
+                -0.3px -0.3px 0 #848484,  
+                 0.3px -0.3px 0 #848484,
+                -0.3px  0.3px 0 #848484,
+                 0.3px  0.3px 0 #848484;}  
+    .tititle{ font-family: 'Roslindale', serif; font-style: normal; font-weight: 300; color: #FFE98A; font-size: 60px;}
+
+    .kr{padding-top: 12px; font-family: 'Pretendard-Regular'; line-height: 1.45; color: #848484; font-size: 18px;}
+
+
+   #nextButton {
+    display: none; 
+    position: absolute; 
+    top: 85vh; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    padding: 8px 16px;
+    font-size: 36px; 
+    border: 0.3px;
+    background-color: transparent; 
+    cursor: pointer; 
+    font-family: 'Roslindale', serif;
+    font-style: normal;
+    font-weight: 300;
+    color: #FFE98A; 
+    text-shadow: 
+        -0.3px -0.3px 0 #848484,  
+        0.3px -0.3px 0 #848484,
+        -0.3px  0.3px 0 #848484,
+        0.3px  0.3px 0 #848484; 
+	}
+    @keyframes moveButterfly {
+    0% {top: 33vh; left: 50vw; content: url('butter1.png');}
+    10%{content: url('butter2.png');}
+    20% {transform: rotate(-40deg); content: url('butter1.png');}
+    30% {top: 10vh; left: 0vw; content: url('butter2.png');}
+    40%{content: url('butter1.png');}
+    50%{content: url('butter2.png');}
+    60%{content: url('butter1.png');}
+    70% {top: -60vh; left: 20vw; transform: rotate(20deg); content: url('butter2.png');}
+    80%{content: url('butter1.png');}
+    100% {top: -70vh; left: 20vw; transform: rotate(60deg);content: url('butter1.png');}}
+
+    #bk{position: absolute; left: -10vw; top: -20vh; animation: rotateBk 15s linear infinite; opacity: 50%}
+    #bbk{position: absolute; left: 55vw; top: 50vh; animation: rotateBk 20s linear infinite; opacity: 30%;}
+
+    @keyframes rotateBk {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }}
+
+	</style>
+</head>
+
+<body>
+<div class="title"><span class="tititle">H</span>elp the<br> <span class="tititle">B</span>utterfly fly when <br><span class="tititle">c</span>licked</div>
+<div class="kr">나비를 여러번 클릭해 날아가는 걸 도와주세요</div>
+<img id="butt" src="butter1.png">
+<button id="nextButton">Next</button>
+<img id="bk" src="bk.png">
+<img id="bbk" src="bk.png">
+
+
+<script type="text/javascript">
+
+	var state = "off";
+    var clickCount = 0;
+    var butt = document.getElementById('butt');
+
+    butt.onclick = function(){
+    clickCount++;
+    
+    if (clickCount >= 15) {
+        butt.style.animation = "moveButterfly 5s cubic-bezier(0.25, 0.1, 0.25, 1) forwards";
+        butt.addEventListener('animationend', () => {
+            alert("나비는 꽃들에게 희망을 줄 거예요.");
+        });
+    } else {
+        if (state == "off") {
+            butt.src = "butter1.png";
+            state = "on";
+        } else if (state == "on") {
+            butt.src = "butter2.png";
+            state = "off";
+        }
+    }
+}
+
+
+</script>
+</body>
+</html>
